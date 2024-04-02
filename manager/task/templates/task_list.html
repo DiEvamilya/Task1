@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="task">
+<content class="yach">
+        {% for t in tasks %}
+            <img style="height: 50px; width: 50px" src="{{ t.image.url }}">
+
+            <label for="prio">Приоритет</label>
+            <div class="circle" name="prio" style="{% if t.priority == 'v' %}
+                background-color: red;
+                {% elif t.priority == 's' %} background-color:yellow;
+                {% elif t.priority == 'n' %} background-color:green;
+                {% endif %};">
+            </div>
+
+
+        <p>{{ t.title }}</p>
+
+        <p>{{ t.deadline }}</p>
+
+        <p>Статус: {{ t.status }}</p>
+
+
+        <form action="{% url 'completed' t.pk %}" method="post">
+        {% csrf_token %}
+            <button type="submit">Completed</button>
+        </form>
+
+
+
+<!--    <div class="task_navi">-->
+<!--        <button class="" {% if task.status == 'In progress' %}-->
+<!--        <a href="{% url 'task_complete' task.slug%}">Complete</a> |-->
+<!--        <a href="{% url 'task_update' task.slug%}">Update</a> |-->
+<!--        <a href="{% url 'task_list' %}">Back</a>-->
+<!--        {% elif task.status == 'Completed' %}-->
+<!--        <a href="{% url 'task_return' task.slug %}">In Progress</a> |-->
+<!--        <a href="{% url 'task_history' %}">Back</a>-->
+<!--        {% endif %}>-->
+<!--        </button>-->
+<!--    </div>-->
+
+    <div class="button" >
+        <button><a href="{% url 'task_detail' t.slug %}">Detail</a></button>
+        <button><a href="{% url 'task_update' t.pk %}"> Update </a></button>
+        <button><a href="{% url 'task_delete' t.slug %}">  Delete </a></button>
+    </div>
+    {% endfor %}
+
+
+
+</div>
+
+ </content>
+
+</div>
+{% endblock %}
+
+
+

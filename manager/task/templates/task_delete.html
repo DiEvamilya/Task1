@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <p>Are you sure?</p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Delete">
+    </form>
+    <a href="{% url 'list_task' %}">Back</a>
+{% endblock content %}

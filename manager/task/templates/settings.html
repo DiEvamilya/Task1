@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% endblock %}
+
+
+{% block content %}
+    <form method="post" style="width: 20vw;">
+        {% csrf_token %}
+        {% for f in form %}
+            <p style="display: flex; gap: 20px;"><label>{{ f.label }}</label>{{ f }}</p>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

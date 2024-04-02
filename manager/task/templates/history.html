@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+     <a href="{% url 'action_history' %}">Action History View</a>
+<div>
+{% for t in tasks %}
+
+    {{ t.title }}
+    {{ t.deadline }}
+    {{ t.completed_at }}
+
+<button type="submit"> In process</button>
+<button><a href="#">Detail</a></button>
+{% endfor %}
+</div>
+{% endblock %}
+
+
+
